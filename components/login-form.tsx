@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
+import Image from "next/image"
 import { LogIn, Eye, EyeOff } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -36,8 +37,10 @@ export function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 to-orange-100 p-4">
-      <div className="w-full max-w-md space-y-6">
+    <div className="relative min-h-screen flex items-center justify-center p-4 overflow-hidden">
+      <Image src="/login-bg.jpg" alt="" fill priority sizes="100vw" className="object-cover" />
+      <div className="absolute inset-0 bg-white/60 sm:bg-white/50 md:bg-white/40" />
+      <div className="relative z-10 w-full max-w-md space-y-6">
         {/* Logo y título */}
         <div className="text-center">
           <div className="w-20 h-20 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Eye, Calendar, DollarSign, User, AlertTriangle, CheckCircle } from "lucide-react"
+import { Eye, Calendar, User, AlertTriangle, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
@@ -18,12 +18,7 @@ export function CashRegisterHistory() {
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
   )
 
-  // Estadísticas
-  const totalRegisters = cashRegisters.length
-  const openRegisters = cashRegisters.filter((cr) => cr.status === "open").length
-  const registersWithDifferences = cashRegisters.filter(
-    (cr) => cr.status === "closed" && cr.difference && Math.abs(cr.difference) > 0,
-  ).length
+  // Estadísticas removidas para evitar duplicación
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -57,42 +52,6 @@ export function CashRegisterHistory() {
 
   return (
     <div className="space-y-6">
-      {/* Estadísticas del historial */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Registros</CardTitle>
-            <Calendar className="h-4 w-4" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{totalRegisters}</div>
-            <p className="text-xs opacity-80">cajas registradas</p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-green-500 to-green-600 text-white">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Cajas Abiertas</CardTitle>
-            <DollarSign className="h-4 w-4" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{openRegisters}</div>
-            <p className="text-xs opacity-80">actualmente activas</p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-orange-500 to-orange-600 text-white">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Con Diferencias</CardTitle>
-            <AlertTriangle className="h-4 w-4" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{registersWithDifferences}</div>
-            <p className="text-xs opacity-80">requieren atención</p>
-          </CardContent>
-        </Card>
-      </div>
-
       {/* Tabla de historial */}
       <Card>
         <CardHeader>

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Plus, Calculator, DollarSign, TrendingUp, AlertCircle, Clock, Mail } from "lucide-react"
+import { Plus, Calculator, TrendingUp, AlertCircle, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -10,7 +10,6 @@ import { useInventory } from "@/components/inventory-provider"
 import { CashRegisterForm } from "@/components/cash-register-form"
 import { CashMovementForm } from "@/components/cash-movement-form"
 import { CashRegisterHistory } from "@/components/cash-register-history"
-import { DailyReportsManager } from "@/components/daily-reports-manager"
 
 export function CashRegisterManagement() {
   const { currentCashRegister, cashRegisters, getCashMovements, sales } = useInventory()
@@ -125,56 +124,11 @@ export function CashRegisterManagement() {
         </CardContent>
       </Card>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card className="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Ventas Hoy</CardTitle>
-            <DollarSign className="h-4 w-4" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">${todayRevenue.toLocaleString("es-CO")}</div>
-            <p className="text-xs opacity-80">{todaySales.length} transacciones</p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-green-500 to-green-600 text-white">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Balance Actual</CardTitle>
-            <Calculator className="h-4 w-4" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">${currentBalance.toLocaleString("es-CO")}</div>
-            <p className="text-xs opacity-80">en caja registradora</p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-purple-500 to-purple-600 text-white">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Cajas Registradas</CardTitle>
-            <Clock className="h-4 w-4" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{totalRegisters}</div>
-            <p className="text-xs opacity-80">{openRegisters} abiertas</p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-orange-500 to-orange-600 text-white">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Cerradas Hoy</CardTitle>
-            <TrendingUp className="h-4 w-4" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{closedToday}</div>
-            <p className="text-xs opacity-80">cajas procesadas</p>
-          </CardContent>
-        </Card>
-      </div>
+      {/* Widgets de estadísticas removidos para evitar duplicación */}
 
       {/* Tabs para diferentes secciones */}
       <Tabs defaultValue="current" className="w-full">
-        <TabsList className="grid w-full grid-cols-3 bg-white border">
+        <TabsList className="grid w-full grid-cols-2 bg-white border">
           <TabsTrigger value="current" className="flex items-center gap-2">
             <Calculator className="h-4 w-4" />
             Caja Actual
@@ -182,10 +136,6 @@ export function CashRegisterManagement() {
           <TabsTrigger value="history" className="flex items-center gap-2">
             <Clock className="h-4 w-4" />
             Historial
-          </TabsTrigger>
-          <TabsTrigger value="reports" className="flex items-center gap-2">
-            <Mail className="h-4 w-4" />
-            Reportes
           </TabsTrigger>
         </TabsList>
 
@@ -216,10 +166,6 @@ export function CashRegisterManagement() {
 
         <TabsContent value="history" className="space-y-6">
           <CashRegisterHistory />
-        </TabsContent>
-
-        <TabsContent value="reports" className="space-y-6">
-          <DailyReportsManager />
         </TabsContent>
       </Tabs>
 

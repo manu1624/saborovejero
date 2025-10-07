@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Plus, Receipt, TrendingUp, DollarSign, ShoppingBag, Calendar } from "lucide-react"
+import { Plus, Receipt, TrendingUp, ShoppingBag } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -46,52 +46,7 @@ export function SalesManagement() {
         </Button>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card className="bg-gradient-to-r from-green-500 to-green-600 text-white">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Ventas Hoy</CardTitle>
-            <DollarSign className="h-4 w-4" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">${todayRevenue.toLocaleString("es-CO")}</div>
-            <p className="text-xs opacity-80">{todayOrders} pedidos completados</p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Esta Semana</CardTitle>
-            <Calendar className="h-4 w-4" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">${weekRevenue.toLocaleString("es-CO")}</div>
-            <p className="text-xs opacity-80">{weekSales.length} pedidos</p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-purple-500 to-purple-600 text-white">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Este Mes</CardTitle>
-            <TrendingUp className="h-4 w-4" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">${monthRevenue.toLocaleString("es-CO")}</div>
-            <p className="text-xs opacity-80">{monthSales.length} pedidos</p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-r from-orange-500 to-orange-600 text-white">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Ticket Promedio</CardTitle>
-            <ShoppingBag className="h-4 w-4" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">${averageOrderValue.toLocaleString("es-CO")}</div>
-            <p className="text-xs opacity-80">valor promedio por pedido</p>
-          </CardContent>
-        </Card>
-      </div>
+      {/* Widgets de estadísticas removidos para simplificar la vista */}
 
       {/* Tabs para ventas */}
       <Tabs defaultValue="new-sales" className="w-full">
